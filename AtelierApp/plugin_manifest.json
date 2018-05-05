@@ -1,0 +1,10 @@
+{
+  "plugins": [{
+    "name": "DatabasePlugin",
+    "lib_path": "lib/libdatabaseplugin.so"
+  },
+  {
+    "name": "FileSystemPlugin",
+    "lib_path": "lib/libfilesystemplugin.so"
+  }]
+}

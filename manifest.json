@@ -1,0 +1,46 @@
+{
+   "name":"54APP",
+   "description":"Simple web example application to demonstrate",
+   "package":"bos.iecas.app",
+   "version":"0.1.0",
+   "start_url":"index.html",
+   "permission-level":"system",
+   "orientation":"landscape",
+   "icons":[
+      {
+         "src":"res/img/appicon_demo.png"
+      }
+   ],
+   "developer":{
+      "name":"Example Developer",
+      "url":"http://www.example.com/",
+      "email":"developer@example.com"
+   },
+   "request-permissions":[
+     "atelier.permission.NOTIFICATION",
+     "atelier.permission.INTERNET",
+     "atelier.permission.LOCATION",
+     "atelier.permission.STORAGE_MANAGER",
+     "atelier.permission.STORAGE_RW",
+     "atelier.permission.MEDIAPLAY_MANAGER",
+     "atelier.permission.NETCONN",
+     "atelier.permission.NETWORK_CONTROL",
+     "atelier.permission.APN",
+     "atelier.permission.UDP_NETWORK",
+     "atelier.permission.WLAN",
+     "atelier.permission.USB",
+     "atelier.permission.VIBRATOR",
+     "atelier.permission.NFC_CONTROL",
+     "atelier.permission.RECORD_AUDIO",
+     "atelier.permission.GET_NOTIFICATION",
+     "atelier.permission.CAMERA_MANAGER",
+     "atelier.permission.AUDIO_MANAGER",
+     "atelier.permission.WAKE_LOCK",
+     "atelier.permission.MEDIASCAN_MANAGER",
+     "atelier.permission.WRITE_EXTERNAL_STORAGE",
+     "atelier.permission.CALL_MANAGER",
+     "atelier.permission.ACCESS_ALL_EXTERNAL_STORAGE",
+     "atelier.permission.WRITE_MEDIA_STORAGE",
+     "atelier.permission.BACKGROUND"
+   ]
+}

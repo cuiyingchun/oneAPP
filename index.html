@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>H5 app</title>
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <script src="./static/libs/GeoBOS.bundle.min.js"></script>
+  <script src="./static/libs/GeoBOS.adhoc.min.js"></script>
+  <script src="./static/libs/GeoBOS.datastore.min.js"></script>
+  <script src="./static/libs/GeoBOS.geolocation.min.js"></script>
+  <script src="./static/libs/GeoBOS.call.min.js"></script>
+  <script src="./static/libs/GeoBOS.orientation.min.js"></script>
+  <script src="./static/libs/GeoBOS.notification.min.js"></script>
+  <script src="./static/libs/GeoBOS.bluetooth.js"></script>
+  <script src="./static/libs/GeoBOS.security.js"></script>
+  <script src="./static/libs/GeoBOS.util.min.js"></script>
+  <script src="./static/libs/GeoBOS.appman.min.js"></script>
+  <script src="./static/libs/GeoBOS.fs.min.js"></script>
+  <script src="./static/libs/GeoBOS.filePicker.min.js"></script>
+  <script src="./static/libs/GeoBOS.wifi.js"></script>
+  <script src="./static/libs/GeoBOS.media.AudioPlayer.min.js"></script>
+  <script src="./static/libs/GeoBOS.media.AudioRecorder.min.js"></script>
+  <!--地图引入文件-->
+  <script src="http://localhost:3000/libs/GeoVis/GeoVis.js"></script>
+  <link rel="stylesheet" href="http://localhost:3000/libs/GeoVis/Widgets/widgets.css">
+</head>
+<body>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+<style>
+  *{ margin:0;padding:0;font-size:16px;}
+  body {
+    font-size:20px;
+    font-family: "Microsoft YaHei","微软雅黑";
+    background:#fff;
+    height: 100%;
+    width: 100%;
+    overflow: auto !important;
+    position: inherit !important;
+  }
+  li{ list-style:none; }
+  input, textarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: none;
+  }
+  input[type="button"], input[type="submit"], input[type="reset"], textarea {
+    -webkit-appearance: none;
+  }
+  .top{
+    text-align: center;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    background: url(static/images/im_header_bg.png) no-repeat;
+    background-size: 100% 3rem;
+    font-size: 1.2rem;
+    color:#fff;
+    position: fixed;
+    top: 0;
+    z-index:1001;
+  }
+  .top > .bos-icon-search{
+    display:inline-block;
+    position: absolute;
+    top:1rem;
+    right:1rem;
+  }
+  .top>.back{
+    position: absolute;
+    top:0;
+    left:1rem;
+  }
+  .bos-tabs__header{margin:0;position:fixed;top:3rem;width:100%;z-index:1001;background:#fff;}
+  .bos-tabs__nav{width:100%;}
+  .bos-tabs__content{ margin-top:3rem;}
+  .commom-box{
+    width:75%;
+    height:97%;
+    background:#888e6c;
+    position:absolute;
+    top:5px;
+    left:23%;
+  }
+  .plot-img-box{height:80%;border-bottom:solid 1px #999;overflow:auto;padding-bottom: 7%;}
+  .plot-img-box>p{
+    padding-top:10px;
+    width:33.33%;
+    float:left;
+    text-align:center;
+  }
+  .plot-img-box>p>img{
+    width:20px;
+    height:20px;
+    display:inline-block;
+  }
+  .quit-common.bos-button--primary{
+    width:90%;
+    color:#000;
+    margin:5%;
+    background-color:#cccdbd;
+    border-color:#cccdbd;
+  }
+  .message-box{ text-align:center;}
+  .message-box>p{
+    width:90%;
+    text-align:left;
+    color:#fff;
+    font-size:.9rem;
+    padding-top:0;
+    line-height:2rem;
+    float:none;
+    padding-left:10px;
+    border-bottom: solid 1px #999;
+  }
+  .message-box>p:nth-last-of-type(1){border-bottom:none;}
+  .quitPost{ text-align:center;padding-top:5%;}
+  .quitPost .bos-button--primary{ width:42%;}
+  .quitUpdate{ text-align:center;padding-top:5%;}
+  .quitUpdate .bos-button--primary{ width:42%;}
+  .quitTs .bos-button--primary{
+    width:30%;
+    margin-left:2.5%;
+    float:left;
+  }
+  #handle .bos-radio__label{
+    color:#fff;
+    margin:.4rem 0;
+  }
+  #handle .bos-button{
+    padding:.5rem 1rem;
+    margin:.2rem;
+  }
+  #handle .bos-button.sure{
+    width:90%;
+    padding:.4rem 0;
+    margin:.4rem;
+  }
+  #handle .bos-switch__core,#handle .bos-switch__core::before{
+    width: 40px !important;
+    height: 20px !important;
+  }
+  #handle .bos-switch__core::after{
+    width: 20px !important;
+    height: 20px !important;
+  }
+  #handle .bos-switch__core:after, #handle .bos-switch__core:before{top:-1px !important;left:-1px !important;}
+  .rescuePanel{
+    top:9rem;
+    text-align: center;
+  }
+  * {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+  .bos-switch__core{
+    border-color: #d1d1d1;
+    background-color: #d1d1d1;
+  }
+  .bos-switch__input:checked+.bos-switch__core{
+    border-color: #9ee75a;
+    background-color: #9ee75a;
+  }
+  .bos-checkbox__input.is-checked .bos-checkbox__inner{
+    border-color: #bfcbd9;
+    background-color: #9ee75a;
+  }
+  .bos-checkbox__input.is-focus .bos-checkbox__inner {
+    border-color: #bfcbd9;
+  }
+</style>
+</html>
